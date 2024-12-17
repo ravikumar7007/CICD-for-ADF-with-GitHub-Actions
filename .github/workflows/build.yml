@@ -47,5 +47,5 @@ jobs:
       - name: Deploy resources
         uses: jzagelbaum/data-factory-deploy-action@v1.2.0
         with:
-          resourceGroupName: ${{ variables.AZURE_RG }} 
-          dataFactoryName: ${{ variables.AZURE_DATA_FACTORY }} 
+          resourceGroupName: ${{ env.AZURE_RG }} 
+          dataFactoryName: ${{ env.AZURE_DATA_FACTORY }} 

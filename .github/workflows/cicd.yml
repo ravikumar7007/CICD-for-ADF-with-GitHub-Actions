@@ -44,7 +44,7 @@ jobs:
 
   release:
     needs: build
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     
  # we 1st download the previously uploaded artifact so we can leverage it later in the release job     
@@ -68,7 +68,7 @@ jobs:
 
       - name: Run Pre-deployment script
         run: |
-          ${{github.workspace}}\release\PrePostDeploymentScript.ps1 `
+          ${{github.workspace}}/release/PrePostDeploymentScript.ps1 `
           -armTemplate 'ARMTemplateForFactory.json' `
           -ResourceGroupName 'rg-adfdemorelease' `
           -DataFactoryName 'adfdemorelease'`
@@ -85,7 +85,7 @@ jobs:
         
       - name: Run Post-deployment script
         run: |
-          ${{github.workspace}}\release\PrePostDeploymentScript.ps1 `
+          ${{github.workspace}}/release/PrePostDeploymentScript.ps1 `
           -armTemplate 'ARMTemplateForFactory.json' `
           -ResourceGroupName 'rg-adfdemorelease' `
           -DataFactoryName 'adfdemorelease'`

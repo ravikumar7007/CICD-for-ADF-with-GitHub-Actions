@@ -18,7 +18,7 @@ jobs:
 
       - name: Export Azure Data Factory
         id: export
-        uses: jzagelbaum/data-factory-deploy-action@v1.0.0
+        uses: jzagelbaum/data-factory-export-action@v1
      
       
       - name: Publish ARM template

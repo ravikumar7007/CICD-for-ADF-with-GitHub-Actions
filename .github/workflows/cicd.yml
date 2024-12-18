@@ -40,7 +40,7 @@ jobs:
 
   release:
     needs: build
-    runs-on: composite
+    runs-on: windows-latest
     steps:
     
  # we 1st download the previously uploaded artifact so we can leverage it later in the release job     

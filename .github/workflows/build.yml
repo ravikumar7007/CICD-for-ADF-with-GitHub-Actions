@@ -13,12 +13,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Validate ARM template
-        uses: jzagelbaum/data-factory-validate-action@v1.1.0
+        uses: Azure/data-factory-validate-action@latest
      
 
       - name: Export Azure Data Factory
         id: export
-        uses: jzagelbaum/data-factory-export-action@v1
+        uses: Azure/data-factory-export-action@latest
      
       
       - name: Publish ARM template
@@ -45,7 +45,7 @@ jobs:
           name: adf-armtemplate
 
       - name: Deploy resources
-        uses: jzagelbaum/data-factory-deploy-action@v1.1.0
+        uses: Azure/data-factory-deploy-action@latest
         with:
           resourceGroupName: ${{ env.AZURE_RG }} 
           dataFactoryName: ${{ env.AZURE_DATA_FACTORY }} 

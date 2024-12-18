@@ -1,0 +1,39 @@
+name: Validate and Export ARM Template
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+
+    - name: Install npm packages
+      run: npm install
+      working-directory: ./build # replace with the package.json folder
+
+    - name: Validate Data Factory resources
+      run: npm run build validate ./subscriptions/9793767c-06b9-4ee5-bfb5-5849b242f311/resourceGroups/rg-adfdemo/providers/Microsoft.DataFactory/factories/adfghdemojz
+      working-directory: ./build # replace with the package.json folder
+
+    - name: Validate and Generate ARM template
+      run: npm run build export ./subscriptions/9793767c-06b9-4ee5-bfb5-5849b242f311/resourceGroups/rg-adfdemo/providers/Microsoft.DataFactory/factories/adfghdemojz "ArmTemplate"
+      # For using preview that allows you to only stop/start triggers that are modified, uncomment the below line and make sure the package.json contains the build-preview command.
+      # run: npm run build-preview export ./<Root-folder-from-Git-configuration-settings-in-ADF> /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/GartnerMQ2021/providers/Microsoft.DataFactory/factories/Dev-GartnerMQ2021-DataFactory "ArmTemplate"
+      working-directory: ./build # replace with the package.json folder
+
+    - name: Upload ARM template artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ArmTemplates
+        path: ./build/ArmTemplate # replace with the package.json folder

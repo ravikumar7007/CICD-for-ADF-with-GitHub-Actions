@@ -40,7 +40,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ArmTemplates
-        path: ${{github.workspace}}/build/ArmTemplate # replace with the package.json folder
+        path: ${{github.workspace}}/build/ ##########ArmTemplate # replace with the package.json folder
 
   release:
     needs: build
@@ -76,7 +76,7 @@ jobs:
       - name: Run Pre-deployment script
         run: |
           ./PrePostDeploymentScript.ps1 `
-          -armTemplate 'ARMTemplateForFactory.json' `
+          -armTemplate './ARMTemplate/ARMTemplateForFactory.json' `
           -ResourceGroupName 'rg-adfdemorelease' `
           -DataFactoryName 'adfdemorelease'`
           -predeployment $true `
@@ -94,7 +94,7 @@ jobs:
       - name: Run Post-deployment script
         run: |
           ./PrePostDeploymentScript.ps1 `
-          -armTemplate 'ARMTemplateForFactory.json' `
+          -armTemplate './ARMTemplate/ARMTemplateForFactory.json' `
           -ResourceGroupName 'rg-adfdemorelease' `
           -DataFactoryName 'adfdemorelease'`
           -predeployment $false `

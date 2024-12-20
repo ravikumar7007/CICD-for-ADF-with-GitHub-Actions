@@ -73,9 +73,10 @@ jobs:
    #     run: Update-PSResource Az -Force 
    #     shell: pwsh
 
-
-      - name: Run Pre-deployment script
-        run: |
+      - name: Run Azure PowerShell Script File
+        uses: azure/powershell@v2
+        with:
+         inlineScript: |
           ./PrePostDeploymentScript.ps1 `
           -armTemplate ${{github.workspace}}\ARMTemplateForFactory.json `
           -ArmTemplateParameters ${{github.workspace}}\ARMTemplateParametersForFactory.json `
@@ -83,7 +84,18 @@ jobs:
           -DataFactoryName 'adfdemorelease'`
           -predeployment $true `
           -deleteDeployment $false
-        shell: pwsh
+         azPSVersion: "latest"
+         
+  #    - name: Run Pre-deployment script
+  #      run: |
+  #        ./PrePostDeploymentScript.ps1 `
+  #        -armTemplate ${{github.workspace}}\ARMTemplateForFactory.json `
+  #        -ArmTemplateParameters ${{github.workspace}}\ARMTemplateParametersForFactory.json `
+  #        -ResourceGroupName 'rg-adfdemorelease' `
+  #        -DataFactoryName 'adfdemorelease'`
+  #        -predeployment $true `
+  #        -deleteDeployment $false
+  #      shell: pwsh
 
       - name: Run ARM deploy
         uses: azure/arm-deploy@v2

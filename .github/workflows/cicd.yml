@@ -37,7 +37,7 @@ jobs:
       working-directory: ${{github.workspace}}/build # replace with the package.json folder
 
     - name: Upload ARM template artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ArmTemplates
         path: ${{github.workspace}}/build/ArmTemplate # replace with the package.json folder

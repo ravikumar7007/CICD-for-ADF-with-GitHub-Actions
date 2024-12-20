@@ -45,6 +45,9 @@ jobs:
   release:
     needs: build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./release
     steps:
     
  # we 1st download the previously uploaded artifact so we can leverage it later in the release job     
@@ -66,9 +69,11 @@ jobs:
   #      run: Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force 
   #      shell: pwsh
 
+      - name: Check out the repository to the runner
+        uses: actions/checkout@v4  
       - name: Run Pre-deployment script
         run: |
-          ./release/PrePostDeploymentScript.ps1 `
+          ./PrePostDeploymentScript.ps1 `
           -armTemplate 'ARMTemplateForFactory.json' `
           -ResourceGroupName 'rg-adfdemorelease' `
           -DataFactoryName 'adfdemorelease'`
@@ -85,7 +90,7 @@ jobs:
         
       - name: Run Post-deployment script
         run: |
-          ./release/PrePostDeploymentScript.ps1 `
+          ./PrePostDeploymentScript.ps1 `
           -armTemplate 'ARMTemplateForFactory.json' `
           -ResourceGroupName 'rg-adfdemorelease' `
           -DataFactoryName 'adfdemorelease'`

@@ -77,7 +77,7 @@ jobs:
       - name: Run Pre-deployment script
         run: |
           ./PrePostDeploymentScript.ps1 `
-          -armTemplate ${{github.workspace}} `
+          -armTemplate ${{github.workspace}}/ARMTemplateForFactory.json `
           -ResourceGroupName 'rg-adfdemorelease' `
           -DataFactoryName 'adfdemorelease'`
           -predeployment $true `

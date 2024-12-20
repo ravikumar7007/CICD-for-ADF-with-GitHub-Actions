@@ -73,7 +73,7 @@ jobs:
         uses: actions/checkout@v4  
       - name: Run Pre-deployment script
         run: |
-          .build/PrePostDeploymentScript.ps1 `
+          ./build/PrePostDeploymentScript.ps1 `
           -armTemplate 'ARMTemplateForFactory.json' `
           -ResourceGroupName 'rg-adfdemorelease' `
           -DataFactoryName 'adfdemorelease'`
@@ -90,7 +90,7 @@ jobs:
         
       - name: Run Post-deployment script
         run: |
-          .build/PrePostDeploymentScript.ps1 `
+          ./build/PrePostDeploymentScript.ps1 `
           -armTemplate 'ARMTemplateForFactory.json' `
           -ResourceGroupName 'rg-adfdemorelease' `
           -DataFactoryName 'adfdemorelease'`

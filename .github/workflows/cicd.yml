@@ -50,8 +50,8 @@ jobs:
         working-directory: ./release
     steps:
 
-      - name: Check out the repository to the runner
-        uses: actions/checkout@v4  
+ #     - name: Check out the repository to the runner
+ #       uses: actions/checkout@v4  
         
  # we 1st download the previously uploaded artifact so we can leverage it later in the release job     
       - name: Download a Build Artifact

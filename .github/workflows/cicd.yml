@@ -70,7 +70,7 @@ jobs:
           enable-AzPSSession: true 
       
       - name: Upgrade Az PowerShell module to 13
-        run: Update-PSResource Az -Scope CurrentUser -Force 
+        run: Update-PSResource Az -Force 
         shell: pwsh
 
 

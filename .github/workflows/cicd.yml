@@ -78,6 +78,7 @@ jobs:
         run: |
           ./PrePostDeploymentScript.ps1 `
           -armTemplate ${{github.workspace}}/ARMTemplateForFactory.json `
+          -ArmTemplateParameters ${{github.workspace}}/ARMTemplateParametersForFactory.json `
           -ResourceGroupName 'rg-adfdemorelease' `
           -DataFactoryName 'adfdemorelease'`
           -predeployment $true `

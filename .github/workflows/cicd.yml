@@ -49,13 +49,16 @@ jobs:
       run:
         working-directory: ./release
     steps:
-    
+
+      - name: Check out the repository to the runner
+        uses: actions/checkout@v4  
+        
  # we 1st download the previously uploaded artifact so we can leverage it later in the release job     
       - name: Download a Build Artifact
         uses: actions/download-artifact@v4
         with:
           name: ArmTemplates # (5) Artifact name 
-          path: ./build
+          path: ./release
 
       - name: Login via Az module
         uses: azure/login@v2
@@ -69,11 +72,10 @@ jobs:
   #      run: Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force 
   #      shell: pwsh
 
-      - name: Check out the repository to the runner
-        uses: actions/checkout@v4  
+
       - name: Run Pre-deployment script
         run: |
-          ./build/PrePostDeploymentScript.ps1 `
+          ./PrePostDeploymentScript.ps1 `
           -armTemplate 'ARMTemplateForFactory.json' `
           -ResourceGroupName 'rg-adfdemorelease' `
           -DataFactoryName 'adfdemorelease'`
@@ -90,7 +92,7 @@ jobs:
         
       - name: Run Post-deployment script
         run: |
-          ./build/PrePostDeploymentScript.ps1 `
+          ./PrePostDeploymentScript.ps1 `
           -armTemplate 'ARMTemplateForFactory.json' `
           -ResourceGroupName 'rg-adfdemorelease' `
           -DataFactoryName 'adfdemorelease'`

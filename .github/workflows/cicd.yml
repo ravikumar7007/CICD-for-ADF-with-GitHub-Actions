@@ -76,15 +76,15 @@ jobs:
   #      shell: pwsh
 
 
- #     - name: Run Pre-deployment script
- #       run: |
- #         ./PrePostDeploymentScript.ps1 `
- #         -armTemplate 'ARMTemplateForFactory.json' `
- #         -ResourceGroupName 'rg-adfdemorelease' `
- #         -DataFactoryName 'adfdemorelease'`
- #         -predeployment $true `
- #         -deleteDeployment $false
- #       shell: pwsh
+      - name: Run Pre-deployment script
+        run: |
+          ./PrePostDeploymentScript.ps1 `
+          -armTemplate 'ARMTemplateForFactory.json' `
+          -ResourceGroupName 'rg-adfdemorelease' `
+          -DataFactoryName 'adfdemorelease'`
+          -predeployment $true `
+          -deleteDeployment $false
+        shell: pwsh
 
       - name: Run ARM deploy
         uses: azure/arm-deploy@v2
@@ -94,12 +94,12 @@ jobs:
             template: 'ARMTemplateForFactory.json' 
             parameters: ARMTemplateParametersForFactory.json factoryName='adfdemorelease' #add additional overide parameters if needed here ''
         
- #     - name: Run Post-deployment script
- #       run: |
- #         ./PrePostDeploymentScript.ps1 `
- #         -armTemplate 'ARMTemplateForFactory.json' `
- #         -ResourceGroupName 'rg-adfdemorelease' `
- #         -DataFactoryName 'adfdemorelease'`
- #         -predeployment $false `
- #         -deleteDeployment $true
- #       shell: pwsh
+      - name: Run Post-deployment script
+        run: |
+          ./PrePostDeploymentScript.ps1 `
+          -armTemplate 'ARMTemplateForFactory.json' `
+          -ResourceGroupName 'rg-adfdemorelease' `
+          -DataFactoryName 'adfdemorelease'`
+          -predeployment $false `
+          -deleteDeployment $true
+        shell: pwsh

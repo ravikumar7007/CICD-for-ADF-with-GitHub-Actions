@@ -92,7 +92,7 @@ jobs:
          #   scope: 'resourceGroup'
             resourceGroupName: 'rg-adfdemorelease'  
             template: 'ARMTemplateForFactory.json' 
-            parameters: ARMTemplateParametersForFactory.json factoryName='adfdemorelease' #add additional overide parameters if needed here ''
+            parameters: ARMTemplateParametersForFactory.json factoryName=adfdemorelease #add additional overide parameters if needed here ''
         
   #    - name: Run Post-deployment script
   #      run: |

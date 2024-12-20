@@ -90,7 +90,7 @@ jobs:
         uses: azure/arm-deploy@v2
         with:
          #   scope: 'resourceGroup'
-            resourceGroupName: 'rg-adfdemorelease'
+            resourceGroupName: 'rg-adfdemorelease'  
             template: 'ARMTemplateForFactory.json' 
             parameters: ARMTemplateParametersForFactory.json factoryName='adfdemorelease' #add additional overide parameters if needed here ''
         

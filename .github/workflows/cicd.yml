@@ -69,9 +69,9 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           enable-AzPSSession: true 
       
-  #    - name: Install Az PowerShell module
-  #      run: Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force 
-  #      shell: pwsh
+      - name: Upgrade Az PowerShell module to 13
+        run: Update-PSResource Az -Scope CurrentUser -Force 
+        shell: pwsh
 
 
       - name: Run Pre-deployment script

@@ -50,8 +50,6 @@ jobs:
 #       working-directory: ${{github.workspace}}/release
     steps:
 
- #     - name: Check out the repository to the runner
- #       uses: actions/checkout@v4  
         
  # we 1st download the previously uploaded artifact so we can leverage it later in the release job     
       - name: Download a Build Artifact
@@ -60,8 +58,8 @@ jobs:
           name: ArmTemplates # (5) Artifact name 
  #         path: ${{github.workspace}}/release
 
-      - name: Display structure of downloaded files
-        run: ls -R
+ #     - name: Display structure of downloaded files
+ #       run: ls -R
 
       - name: Login via Az module
         uses: azure/login@v2
@@ -76,15 +74,15 @@ jobs:
   #      shell: pwsh
 
 
-  #    - name: Run Pre-deployment script
-  #      run: |
-  #        ./PrePostDeploymentScript.ps1 `
-  #        -armTemplate 'ARMTemplateForFactory.json' `
-  #        -ResourceGroupName 'rg-adfdemorelease' `
-  #        -DataFactoryName 'adfdemorelease'`
-  #        -predeployment $true `
-  #        -deleteDeployment $false
-  #      shell: pwsh
+      - name: Run Pre-deployment script
+        run: |
+          ./PrePostDeploymentScript.ps1 `
+          -armTemplate 'ARMTemplateForFactory.json' `
+          -ResourceGroupName 'rg-adfdemorelease' `
+          -DataFactoryName 'adfdemorelease'`
+          -predeployment $true `
+          -deleteDeployment $false
+        shell: pwsh
 
       - name: Run ARM deploy
         uses: azure/arm-deploy@v2

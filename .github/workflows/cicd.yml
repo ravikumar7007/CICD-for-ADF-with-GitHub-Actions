@@ -60,6 +60,9 @@ jobs:
           name: ArmTemplates # (5) Artifact name 
           path: ./release
 
+      - name: Display structure of downloaded files
+        run: ls -R
+
       - name: Login via Az module
         uses: azure/login@v2
         with:

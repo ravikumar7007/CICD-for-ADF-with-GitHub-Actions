@@ -1,6 +1,7 @@
 name: Validate, Export and Deploy ARM Template and ADF pre / post deployment scripts
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -27,11 +28,11 @@ jobs:
       working-directory: ${{github.workspace}}/build # replace with the package.json folder
 
     - name: Validate Data Factory resources
-      run: npm run build validate ${{github.workspace}} /subscriptions/<replace with dev sub id>/resourceGroups/<replace with dev rg> /providers/Microsoft.DataFactory/factories/<replace with dev adf name>
+      run: npm run build validate ${{github.workspace}} /subscriptions/f7f944ef-b5d6-434f-9433-7c1ff3e75fac/resourceGroups/myrg/providers/Microsoft.DataFactory/factories/myadf
       working-directory: ${{github.workspace}}/build # replace with the package.json folder
 
     - name: Validate and Generate ARM template
-      run: npm run build export ${{github.workspace}} /subscriptions/<replace with dev sub id>/resourceGroups/<replace with dev rg> /providers/Microsoft.DataFactory/factories/<replace with dev adf name> "ArmTemplate"
+      run: npm run build export ${{github.workspace}} /subscriptions/f7f944ef-b5d6-434f-9433-7c1ff3e75fac/resourceGroups/myrg/providers/Microsoft.DataFactory/factories/myadf "ArmTemplate"
       # For using preview that allows you to only stop/start triggers that are modified, uncomment the below line and make sure the package.json contains the build-preview command.
       # run: npm run build-preview export ./<Root-folder-from-Git-configuration-settings-in-ADF> /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/GartnerMQ2021/providers/Microsoft.DataFactory/factories/Dev-GartnerMQ2021-DataFactory "ArmTemplate"
       working-directory: ${{github.workspace}}/build # replace with the package.json folder
